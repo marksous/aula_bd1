@@ -30,7 +30,6 @@ create table clientes(
 #APAGAR A TABELA
 drop table alunos;
 
-
 ###### D M L ###########
 #INSERIR OS DADOS
 insert into alunos (id_aluno, nome, endereco, turma) values (1, "Zezinho Pança", "Rua Comendador Souza", "1DSN");
@@ -49,3 +48,48 @@ select nome, turma from alunos;
 select nome, turma from alunos
 where turma = "1DSN";
 
+#COMANDO UPDATE (ATUALIZAR OS DADOS)
+update alunos set endereco = "Rua Comendador Cresfúncio", nome = "Werington Screnildo"
+where id_aluno = 1;
+
+#COMANDO DELETE (EXCLUIR OS DADOS)
+delete from alunos
+where id_aluno = 1; 
+
+
+# INSERÇÃO    - INSERT
+# CONSULTA    - SELECT
+# ATUALIZAÇÃO - UPDATE
+# EXCLUSÃO    - DELETE
+
+#C -> CREATE -> INSERT
+#R -> READ   -> SELECT
+#U -> UPDATE -> UPDATE
+#D -> DELETE -> DELETE
+
+#ALTERANDO A TABELA ACRESCENTADO UM CAMPO
+alter table alunos add nome_mae varchar(40) not null;
+
+#ALTERANDO A TABELA REMOVENDO UM CAMPO
+alter table alunos drop nome_mae;
+
+#EXERCÍCIO PRÁTICO COM O FESSOR!
+#BANCO DE DADOS DE PRODUTO
+create database exercicio1;
+
+#SELECIONAR O BANCO DE DADOS
+use exercicio1;
+
+#CRIAR A TABELA DE CATEGORIA
+create table categoria (
+	id            integer not null,
+    especificacao varchar(10) default '',
+    primary key(id)
+);
+
+#CRIAR A TABELA DE UNIDADE DE MEDIDA
+create table unidmedida(
+	id            integer not null,
+    especificacao char(2) default '',
+    primary key(id)
+);
