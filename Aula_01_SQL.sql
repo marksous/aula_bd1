@@ -93,3 +93,47 @@ create table unidmedida(
     especificacao char(2) default '',
     primary key(id)
 );
+
+#CRIAR A TABELA DE PRODUTO
+create table produto(
+	codigo         integer not null auto_increment,
+    descricao      varchar(30) not null default '',
+    estoque_minimo integer     not null default 0,
+    estoque_maximo integer     not null default 0,
+    exportacao     integer     not null default 0,
+    reposicao      integer     not null default 0,
+    montadora      integer     not null default 0,
+    id_unidMed     integer     not null,
+    id_categoria   integer     not null,
+    primary key (codigo),
+    foreign key (id_unidMed) references unidmedida(id),
+    foreign key (id_categoria) references categoria(id)
+);
+
+#CRIAR ALGUNS REGISTROS OU INSTÂNCIAS OU TUPLAS
+#DML - UNIDADE DE MEDIDA
+insert into unidmedida (id, especificacao) values (1, 'PÇ');
+insert into unidmedida (id, especificacao) values (2, 'KG');
+insert into unidmedida (id, especificacao) values (3, 'LT');
+
+#DML - CATEGORIA
+insert into categoria (id, especificacao) values (1, 'Forjado');
+insert into categoria (id, especificacao) values (2, 'Usinado');
+insert into categoria (id, especificacao) values (3, 'Fundido');
+insert into categoria (id, especificacao) values (4, 'Grãos');
+
+#DML - PRODUTO
+insert into produto (descricao, estoque_minimo, estoque_maximo, exportacao, reposicao,
+					 montadora, id_unidMed, id_categoria)
+	   values ('Arroz Tio Marcão', 10, 50, 0, 1, 0, 2, 4);
+
+### B Ô N U S ###
+select descricao, categoria.especificacao, unidmedida.especificacao
+from produto, categoria, unidmedida
+where categoria.id = produto.id_categoria
+  and produto.id_unidmed = unidmedida.id;
+  
+#SELECTs DE APOIO
+select * from produto;
+select * from categoria;
+select * from unidmedida;
